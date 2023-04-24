@@ -61,16 +61,97 @@ public class Midterm{
 		con.setDrawColor(Color.BLACK);
 		con.fillRect(0, 0, 1280, 720);
 		
+		//Scene 3 Choice to Scene 4,5
 		String strReportanswer;
 		con.println("Having arrived on the planet, you must send your boss and colleagues on earth a report on your status.");
 		con.println("Do you keep the existence of the Aliens a secret? Answer \"yes\" or \"no\"");
 		strReportanswer = con.readLine();
-		if(strReportanswer.equals("yes")){
-			con.println("You don't report the Aliens.");
-		}else if(strReportanswer.equals("no")){
-			con.println("You report the Aliens.");
-		}
 		
+		if(strReportanswer.equals("yes")){
+			con.println("You keep the existence of the Aliens a secret and exclude their presence from your report.");
+			scene8(con);
+			scene9(con);
+			int intpasscodeguess;
+			int intRand;
+			intRand = (int)(Math.random()*20000+1);
+
+			con.println("The passcode is between 1 and 20000. What is your passcode guess?");
+			intpasscodeguess = con.readInt();
+			
+			if(intpasscodeguess == intRand){
+				
+			} else{
+				scene10(con);
+			}
+		
+			
+			
+		}else if(strReportanswer.equals("no")){
+			con.println("You report the Aliens to your boss.");
+			con.clear();
+			
+			scene4part1(con);
+			
+			int intvisiontest;
+			int inthumanvalue = 0;
+			//Q1 - Visiontest
+			BufferedImage imgHumanvisiontest = con.loadImage("humanvisiontest.png");
+			con.drawImage(imgHumanvisiontest, 50, 50);
+			con.println("What number do you see?");
+			intvisiontest = con.readInt();
+	
+			if(intvisiontest==60){
+				inthumanvalue = inthumanvalue + 2;
+				con.println(inthumanvalue);
+			}else if(intvisiontest!=60){
+				inthumanvalue = inthumanvalue - 1;
+				con.println(inthumanvalue);
+			}
+			
+			//Q2 - Moral Dilemma
+			con.sleep(22);
+			con.clear();
+			
+			int intTrainquestion;
+			con.println("Train Question");
+			intTrainquestion = con.readInt();
+			
+			if(intTrainquestion == 1){
+				inthumanvalue = inthumanvalue-1;
+				con.println(inthumanvalue);
+			} else if(intTrainquestion == 5){
+				inthumanvalue = inthumanvalue + 5;
+				con.println(inthumanvalue);
+			}
+			
+			//Q3 - Colour Question
+			con.sleep(22);
+			con.clear();
+			
+			String strColourquestion;
+			
+			con.println("Are A and B the same colour?");
+			strColourquestion = con.readLine();
+			
+			if(strColourquestion.equals("yes")){
+				inthumanvalue = inthumanvalue + 3;
+				con.println(inthumanvalue);
+			} else if(!strColourquestion.equals("yes")){
+				inthumanvalue = inthumanvalue - 1;
+				con.println(inthumanvalue);
+			}
+			
+			//Human value judge transition to scene 5,6, 7 end scenes
+			if(inthumanvalue<5){
+				scene5(con);
+			}else if(inthumanvalue<=5 && inthumanvalue <=9){
+				scene6(con);
+			}else if(inthumanvalue == 100){
+				scene7(con);
+			}
+			
+		
+			}
 				
 	}
 	
@@ -182,12 +263,43 @@ public class Midterm{
 		
 	}
 	
-	//Scene 4
-	public static void scene4(Console con){
-		
-		
+	//Scene 4 - animations
+	public static void scene4part1(Console con){
+		con.println("The aliens find you untrustworthy and reveal that they are supergenius'");
+		con.println("They put you in the lab to test you for your beneficial qualities");
+	}
+	
+	//Scene5
+	public static void scene5(Console con){
+	con.println("Your planet is harvested for its resources and puppies");
+	}
+	
+	//Scene 6
+	public static void scene6(Console con){
+	con.println("The aliens find you uninteresting, you return back to earth but you lose 2 of your senses");
+	}
+	
+	//Scene 7
+	public static void scene7(Console con){
+	con.println("You prove to be intelligent");
+	}	
+	
+	//Scene 8
+	public static void scene8(Console con){
+		con.println("Aliens bring you around their civilization that proves to be quite complex.");
+	}
+	
+	//Scene 9
+	public static void scene9(Console con){
+		con.println("Aliens begin to take over your mind. Before they fully take over, you find a passcode on the wall to an escape ship");
+		con.println("They have supplied you with the time but you have one guess.");
+	}
+	
+	//Scene 10
+	public static void scene10(Console con){
 		
 	}
+	
 	
 	
 	
