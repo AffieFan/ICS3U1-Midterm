@@ -1,3 +1,7 @@
+//Reality's Mirage: Alien Encounter
+//Created by: Affie Fan
+//Version Number:13
+
 import arc.*;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
@@ -5,9 +9,10 @@ import java.awt.Font;
 
 public class Midterm{
 	public static void main (String[] args){
-		Console con = new Console ("Midterm Project", 1280, 720);
+		Console con = new Console ("Reality's Mirage: Alien Encounter", 1280, 720);
 		
 		//Scene 1 - Title
+		scene11(con);
 		scene1(con);
 		
 		
@@ -40,7 +45,7 @@ public class Midterm{
 			dblxcoordinate = con.readDouble();
 			con.println("What is the Y coordinate?");
 			dblycoordinate = con.readDouble();
-			
+			//if coordinates match, fly to the planet, else, continue guessing
 			if(dblxcoordinate == 1 && dblycoordinate == 1){
 				con.println("You have identified the location of the planet. Flying there now.");
 				intnumber = intnumber+1;
@@ -68,7 +73,8 @@ public class Midterm{
 		con.println("Do you keep the existence of the Aliens a secret? Answer \"yes\" or \"no\"");
 		strReportanswer = con.readLine();
 		con.clear();
-		
+		//if answer is yes, continue on branch of the game for a chance to escape
+		//if answer is no, continue on a branch of the game where you are bound to doom
 		if(strReportanswer.equalsIgnoreCase("yes")){
 			con.println("You keep the existence of the Aliens a secret and exclude their presence from your report.");
 			scene8(con);
@@ -84,9 +90,9 @@ public class Midterm{
 			
 			int intpasscodeguess;
 			int intRand;
-			intRand = (int)(Math.random()*20000+1);
+			intRand = (int)(Math.random()*5+1);
 			con.clear();
-			con.println("The passcode is between 1 and 20000. What is your passcode guess?");
+			con.println("The passcode is between 1 and 5. What is your passcode guess?");
 			intpasscodeguess = con.readInt();
 			
 			if(intpasscodeguess == intRand){
@@ -110,6 +116,10 @@ public class Midterm{
 				con.println("You actually stayed 500 times the amount of months you thought you spent on the planet.");
 				con.println("You spent "+dblmonthsdoubled +" months on the planet");
 				con.sleep(10000);
+				
+				//if monthsdoubled is below 1000, load image showing grandmas and grandpas
+				//if monthsdoubled is below 10000, load image showing caskets
+				//else, load image of explosion
 				if(dblmonthsdoubled <=1000){
 					con.clear();
 					scene13(con);
@@ -134,6 +144,7 @@ public class Midterm{
 				intnamelength = strName.length();
 				for(intcount2 = 1; intcount2<=intnamelength; intcount2++){
 					strLetter = strName.substring (intcount2 - 1, intcount2);
+					//if the letters are capitals, add the letter to the string strInitial
 					if(strLetter.equals("A") || strLetter.equals("B") ||strLetter.equals("C") ||strLetter.equals("D") ||strLetter.equals("E") ||strLetter.equals("F") ||strLetter.equals("G") ||strLetter.equals("H") ||strLetter.equals("I") ||strLetter.equals("J") ||strLetter.equals("K") ||strLetter.equals("L") ||strLetter.equals("M") ||strLetter.equals("N") ||strLetter.equals("O") ||strLetter.equals("P") ||strLetter.equals("Q") ||strLetter.equals("R") ||strLetter.equals("S") ||strLetter.equals("T") ||strLetter.equals("U") ||strLetter.equals("V") ||strLetter.equals("W") ||strLetter.equals("X") ||strLetter.equals("Y") ||strLetter.equals("Z")) {
 						strInitial = strInitial + strLetter;
 					}
@@ -156,6 +167,10 @@ public class Midterm{
 						con.fillRect(0,0, 1280, 720);
 						intinitialx = intinitialx + intdeltax;
 						intinitialy = intinitialy + intdeltay;
+						//if the x position of the string is smaller than zero, change deltax to 5
+						//if the x position of the string is larger than 1180 (edge of console) change deltax to -5 to change direction of movement
+						//if the y position of the string is smaller than zero, change deltay to 5
+						//if the y position of the string is larger than 620, change deltay to -5 to change direction of movement
 						if(intinitialx<=0){
 							intdeltax = 5;
 						}else if (intinitialx >1180){
@@ -198,6 +213,7 @@ public class Midterm{
 				con.sleep(10);
 				char chrSpace1;
 				chrSpace1 = con.getChar();
+				//if space is pressed, end loop
 				if(chrSpace1 == ' ' );{
 					intcount1 = intcount1+1;
 				}
@@ -221,7 +237,8 @@ public class Midterm{
 			}
 			con.println("What number do you see?");
 			intvisiontest = con.readInt();
-	
+				
+			//if their vision is correct, increase human value, otherwise decrease human value
 			if(intvisiontest==276){
 				inthumanvalue = inthumanvalue + 1;
 			}else if(intvisiontest!=276){
@@ -239,13 +256,14 @@ public class Midterm{
 			}
 			int intTrainquestion;
 			con.println("There are two flying saucer traffic paths.");
-			con.println("On the path that the flying saucer is flying toward, there is your boss fred");
+			con.println("On the path that the flying saucer is flying toward, there is your boss Fred");
 			con.println("On the other path, that the flying saucer is not flying toward, there is 5 aliens");
 			con.println("You can press the imaginary remote control and kill the five aliens or let fred die.");
 			con.println("Think carefully, saving your friend would display loyalty, saving the aliens would display logic");
 			con.println("Do you save the one being Fred or the five Aliens? Enter 1 or 5");
 			intTrainquestion = con.readInt();
 			
+			//if they choose to collide with the 1 human, human value increases, if they choose to collide with 5 aliens, human value decreases
 			if(intTrainquestion == 1){
 				inthumanvalue = inthumanvalue-1;
 			} else if(intTrainquestion == 5){
@@ -269,6 +287,7 @@ public class Midterm{
 			con.println("Are A and B the same colour?");
 			strColourquestion = con.readLine();
 			
+			//if they think the colours are the same, add human value, otherwise, decrease human value
 			if(strColourquestion.equalsIgnoreCase("yes")){
 				inthumanvalue = inthumanvalue + 2;
 			} else if(!strColourquestion.equalsIgnoreCase("no")){
@@ -279,15 +298,13 @@ public class Midterm{
 			con.clear();
 			
 			//Human value judge transition to scene 5,6, 7 end scenes
+			//based on the earned human value, change the ending they recieve
 			if(inthumanvalue<5){
 				scene5(con);
-				con.repaint();
-			}else if(inthumanvalue<=5 && inthumanvalue <=9){
+			}else if(inthumanvalue>=5 && inthumanvalue <=9){
 				scene6(con);
-				con.repaint();
 			}else if(inthumanvalue == 10){
 				scene7(con);
-				con.repaint();
 			}
 		
 			}
@@ -327,6 +344,7 @@ public class Midterm{
 			BufferedImage imgScene2mission = con.loadImage("mission.png");
 			con.drawImage(imgScene2mission, 0, 0);
 			con.repaint();
+			//if intcuonting is above 20, load the space message with flashes
 			if(intcounting > 20){
 				con.setDrawColor(new Color(223, 230, 230));
 				con.fillRoundRect(290, 130, 700, 350, 40, 40 ); // xy positions, xy length, xyroundness
@@ -386,7 +404,7 @@ public class Midterm{
 			BufferedImage imgAlienver1 = con.loadImage("Alienver1.png");
 			con.drawImage(imgAlienver1, 250, 160);
 			con.repaint();
-			
+			//based on the intcounted variable, load different pictures that are messages to the player
 			if(intcounted > 65 && intcounted<200){
 				BufferedImage imgAliengreeting = con.loadImage("Aliengreeting.png");
 				con.drawImage(imgAliengreeting, -50, 180);
@@ -416,6 +434,7 @@ public class Midterm{
 			con.drawImage(imgUntrustworthy, 0, 0);
 			con.repaint();
 			//alien jumpscare flashing
+			//based on where the intcounts variable is, load different images
 			if(intcounts>100 && intcounts<150){
 				BufferedImage imgBetrayedAliens = con.loadImage("unhappyaliens.png");
 				con.drawImage(imgBetrayedAliens, 0, 0);
@@ -531,6 +550,7 @@ public class Midterm{
 			BufferedImage imgescapeship = con.loadImage("escapeship.png");
 			con.drawImage(imgescapeship, 0,0);
 			con.repaint();
+			//if countery is above 70, load and draw the image escaper.png and animate it
 			if(intcountery < 70){
 				BufferedImage imgescaper = con.loadImage("escaper.png");
 				con.drawImage(imgescaper, -275, intescapery);
