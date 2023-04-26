@@ -12,7 +12,6 @@ public class Midterm{
 		Console con = new Console ("Reality's Mirage: Alien Encounter", 1280, 720);
 		
 		//Scene 1 - Title
-		scene11(con);
 		scene1(con);
 		
 		
@@ -470,16 +469,16 @@ public class Midterm{
 	
 	//Scene5
 	public static void scene5(Console con){
-	BufferedImage imgDeadEarth = con.loadImage("deadearth.png");
-	con.drawImage(imgDeadEarth, 0, 0);
-	con.sleep(200);
-	Font fntAmatic = con.loadFont("Beginfont.ttf", 80);
-	con.setDrawFont(fntAmatic);
-	con.setDrawColor(Color.WHITE);
-	con.drawString("Your planet is harvested", 200, 150);	
-	con.drawString("for its puppies and then", 320, 300);
-	con.drawString("destroyed", 500, 450);
-	con.repaint();
+		BufferedImage imgDeadEarth = con.loadImage("deadearth.png");
+		con.drawImage(imgDeadEarth, 0, 0);
+		con.sleep(200);
+		Font fntAmatic = con.loadFont("Beginfont.ttf", 80);
+		con.setDrawFont(fntAmatic);
+		con.setDrawColor(Color.WHITE);
+		con.drawString("Your planet is harvested", 200, 150);	
+		con.drawString("for its puppies and then", 320, 300);
+		con.drawString("destroyed", 500, 450);
+		con.repaint();
 	
 	}
 	
