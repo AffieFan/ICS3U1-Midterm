@@ -8,8 +8,6 @@ public class Midterm{
 		Console con = new Console ("Midterm Project", 1280, 720);
 		
 		//Scene 1 - Title
-		
-		scene11(con);
 		scene1(con);
 		
 		
@@ -18,7 +16,7 @@ public class Midterm{
 		con.fillRect(0, 0, 1280, 720);
 
 		String strName;
-		con.println("Type your full name to begin (capitalize the first letters)");
+		con.println("Type your full name to begin (capitalize your initials )");
 		strName = con.readLine();
 		con.println("Welcome "+strName);
 			
@@ -48,9 +46,9 @@ public class Midterm{
 				intnumber = intnumber+1;
 			}else{
 				con.println("No planet found in entered coordinates. Try again.");
-			}
-				
+			}		
 		}
+		
 		con.sleep(1000);
 		con.clear();
 		
@@ -70,7 +68,8 @@ public class Midterm{
 		con.println("Do you keep the existence of the Aliens a secret? Answer \"yes\" or \"no\"");
 		strReportanswer = con.readLine();
 		con.clear();
-		if(strReportanswer.equals("yes")){
+		
+		if(strReportanswer.equalsIgnoreCase("yes")){
 			con.println("You keep the existence of the Aliens a secret and exclude their presence from your report.");
 			scene8(con);
 			char chrSpace2;
@@ -91,34 +90,90 @@ public class Midterm{
 			intpasscodeguess = con.readInt();
 			
 			if(intpasscodeguess == intRand){
-				scene11(con);
 				double dblmonths;
 				double dblmonthsdoubled;
 				con.println("Congrats, the password is correct and you are able to get away from the aliens");
-				con.println("How many days do you think you stayed on the planet?");
+				con.sleep(500);
+				scene11(con);
+				
+				//Scene 12
+				con.clear();
+				BufferedImage imgWormhole = con.loadImage("wormhole.png");
+				con.drawImage(imgWormhole, 0,0);
+				con.println("Upon exit, the aliens reveal their final trick.");
+				con.println("As the torturous beings they are, they have toyed with the time you spent on their planet");
+				con.println("How many months do you think you stayed on the planet? (Does not have to be an integer)");
 				dblmonths = con.readDouble();
 				dblmonthsdoubled = dblmonths*500;
 				con.println("You return to earth.");
 				con.println("However, when you return to earth you realize the aliens manipulated time on the planet.");
-				con.println("You actually spent 500 times the amount of months you thought you spent on the planet.");
+				con.println("You actually stayed 500 times the amount of months you thought you spent on the planet.");
 				con.println("You spent "+dblmonthsdoubled +" months on the planet");
-				if(dblmonthsdoubled <=50){
+				con.sleep(10000);
+				if(dblmonthsdoubled <=1000){
+					con.clear();
 					scene13(con);
-				}else if(dblmonthsdoubled<=100 && dblmonthsdoubled>50){
+				}else if(dblmonthsdoubled<=10000 && dblmonthsdoubled>1000){
+					con.clear();
 					scene14(con);
 				}else{
+					con.clear();
 					scene15(con);
 				}
 				
 			} else{
 				//scene 10
-				String strInitials;
-				con.println(strName);
+				con.println("As you fail to escape, the Aliens trap you in an endless screensaver");
+				con.sleep(5000);
+				con.clear();
+				int intnamesubstring = 0;
+				String strInitial = "";
+				String strLetter;
+				int intnamelength;
+				int intcount2;
+				intnamelength = strName.length();
+				for(intcount2 = 1; intcount2<=intnamelength; intcount2++){
+					strLetter = strName.substring (intcount2 - 1, intcount2);
+					if(strLetter.equals("A") || strLetter.equals("B") ||strLetter.equals("C") ||strLetter.equals("D") ||strLetter.equals("E") ||strLetter.equals("F") ||strLetter.equals("G") ||strLetter.equals("H") ||strLetter.equals("I") ||strLetter.equals("J") ||strLetter.equals("K") ||strLetter.equals("L") ||strLetter.equals("M") ||strLetter.equals("N") ||strLetter.equals("O") ||strLetter.equals("P") ||strLetter.equals("Q") ||strLetter.equals("R") ||strLetter.equals("S") ||strLetter.equals("T") ||strLetter.equals("U") ||strLetter.equals("V") ||strLetter.equals("W") ||strLetter.equals("X") ||strLetter.equals("Y") ||strLetter.equals("Z")) {
+						strInitial = strInitial + strLetter;
+					}
+				}
+				
+				Font fntscreensaver = con.loadFont("Beginfont.ttf", 100);
+				con.setDrawFont(fntscreensaver);
+				
+				while(1==1){
+					int intinitialx = 0;
+					int intinitialy = 0;
+					int intdeltax = 200;
+					int intdeltay = 200;
+					while(2==2){
+						con.setDrawColor(Color.RED);
+						con.drawString(strInitial, intinitialx, intinitialy);
+						con.repaint();
+						con.sleep(10);
+						con.setDrawColor(Color.BLACK);
+						con.fillRect(0,0, 1280, 720);
+						intinitialx = intinitialx + intdeltax;
+						intinitialy = intinitialy + intdeltay;
+						if(intinitialx<=0){
+							intdeltax = 5;
+						}else if (intinitialx >1180){
+							intdeltax = -5;
+						}
+						
+						if(intinitialy<0){
+							intdeltay = 5;
+						}else if (intinitialy>620){
+							intdeltay = -5;
+						}
+					}
+				}
 			}
-		
+
+					
 			
-			
-		}else if(strReportanswer.equals("no")){
+		}else if(strReportanswer.equalsIgnoreCase("no")){
 			con.println("You report the Aliens to your boss.");
 			con.clear();
 			
@@ -147,7 +202,8 @@ public class Midterm{
 					intcount1 = intcount1+1;
 				}
 			
-			}
+				}
+			
 			
 			con.setDrawColor(Color.BLACK);
 			con.fillRect(0, 0, 1280, 720);
@@ -168,7 +224,6 @@ public class Midterm{
 	
 			if(intvisiontest==276){
 				inthumanvalue = inthumanvalue + 1;
-				con.println(inthumanvalue);
 			}else if(intvisiontest!=276){
 				inthumanvalue = inthumanvalue - 1;
 			}
@@ -193,7 +248,6 @@ public class Midterm{
 			
 			if(intTrainquestion == 1){
 				inthumanvalue = inthumanvalue-1;
-				con.println(inthumanvalue);
 			} else if(intTrainquestion == 5){
 				inthumanvalue = inthumanvalue + 5;
 			}
@@ -215,10 +269,9 @@ public class Midterm{
 			con.println("Are A and B the same colour?");
 			strColourquestion = con.readLine();
 			
-			if(strColourquestion.equals("yes")){
+			if(strColourquestion.equalsIgnoreCase("yes")){
 				inthumanvalue = inthumanvalue + 2;
-				con.println(inthumanvalue);
-			} else if(!strColourquestion.equals("no")){
+			} else if(!strColourquestion.equalsIgnoreCase("no")){
 				inthumanvalue = inthumanvalue - 1;
 				con.println(inthumanvalue);
 			}
@@ -247,7 +300,7 @@ public class Midterm{
 		int intplanetx = 600;
 		int intplanety = 500;
 		
-		for (intcount = 1; intcount<10; intcount++){ // change back to 100
+		for (intcount = 1; intcount<100; intcount++){ 
 			
 			BufferedImage imgScene1stars = con.loadImage("stars.jpg");
 			con.drawImage(imgScene1stars, 0, 0);
@@ -268,18 +321,23 @@ public class Midterm{
 	
 	//scene2
 	public static void scene2(Console con){
-		con.sleep(1000);
 		con.clear();
 		int intcounting;
-		for(intcounting = 1; intcounting<20; intcounting++){ // change back length of mission statement
+		for(intcounting = 1; intcounting<100; intcounting++){ 
 			BufferedImage imgScene2mission = con.loadImage("mission.png");
 			con.drawImage(imgScene2mission, 0, 0);
 			con.repaint();
-			if(intcounting > 65){
+			if(intcounting > 20){
 				con.setDrawColor(new Color(223, 230, 230));
 				con.fillRoundRect(290, 130, 700, 350, 40, 40 ); // xy positions, xy length, xyroundness
 				con.setDrawColor(Color.BLACK);
-				con.drawString("Mission Statement", 540, 150);
+				con.drawString("Hello space traveler", 500, 150);
+				con.drawString("You are a researcher looking to ", 450, 200);
+				con.drawString("explore extraterrestial planets.", 450, 250);
+				con.drawString("Your objective is to find a planet,", 450, 300);
+				con.drawString("explore it, don't die.", 500, 350);
+				con.drawString("Be careful and good luck", 500, 400);
+				con.sleep(50);
 			}
 		}
 	}
@@ -484,46 +542,78 @@ public class Midterm{
 		BufferedImage imglandscape = con.loadImage("landscape.png");
 		con.drawImage (imglandscape, 0, 0);		
 					
-		int intescapeshipx=0;
+		int intescapeshipx=-30;
 		int intescapeshipy=20;
 		int intcounters;
 		
-		for(intcounters=0; intcounters<500; intcounters++){
+		for(intcounters=0; intcounters<50; intcounters++){
 			BufferedImage imglandscape2 = con.loadImage("landscape.png");
 			con.drawImage (imglandscape2, 0, 0);
 			con.repaint();
 			BufferedImage imgflyingescapeship = con.loadImage("flyingescapeship.png");
 			con.drawImage(imgflyingescapeship, intescapeshipx, intescapeshipy);
 			con.repaint();
-			intescapeshipx = intescapeshipx + 5;
+			intescapeshipx = intescapeshipx + 10;
 			intescapeshipy = intescapeshipy-5;
 			con.sleep(22);
 		}
-
+		
+		con.setDrawColor(Color.BLACK);
+		con.fillRect(0, 0, 1280, 720);		
+		con.repaint();
 			
 	}
 	
-	//Scene 12
-	public static void scene12(Console con){
-		
-	}
 	
 	//Scene 13
 	public static void scene13(Console con){
+		BufferedImage imgElderly = con.loadImage("elderly.png");
+		con.drawImage(imgElderly, 0, 0);
+		con.repaint();
+		con.sleep(200);
+		Font fntbegin = con.loadFont("Beginfont.ttf", 100);
+		con.setDrawFont(fntbegin);
+		con.setDrawColor(Color.RED);
+		con.drawString("Your friends are", 250, 200);
+		con.drawString("grandmas and grandpas", 100, 300);
+		con.repaint();
+		con.sleep(20000);
 		
 	}
 	
 	//Scene 14
 	public static void scene14(Console con){
+		BufferedImage imgCasket = con.loadImage("casket.png");
+		con.drawImage(imgCasket, 0, 0);
+		con.repaint();
+		con.sleep(200);
+		Font fntbegin = con.loadFont("Beginfont.ttf", 100);
+		con.setDrawFont(fntbegin);
+		con.setDrawColor(Color.RED);
+		con.drawString("Your friends are", 250, 200);
+		con.drawString("dead", 525, 300);
+		con.repaint();
+		con.sleep(20000);
 		
 	}
 	
 	//Scene 15
 	public static void scene15(Console con){
+		con.println("It is so far into the future that the project is no longer relevant");
+		con.println("As earth does not recognize your airship, they obliterate it thinking its a global threat");
+		con.println("You don't make it to earth.");
 		
+		BufferedImage imgshipdie = con.loadImage("shipdie.png");
+		con.drawImage(imgshipdie, 0, 0);
+		con.repaint();
+		con.sleep(200);
+		Font fntbegin = con.loadFont("Beginfont.ttf", 100);
+		con.setDrawFont(fntbegin);
+		con.setDrawColor(Color.RED);
+		con.drawString("You are dead", 350, 400);
+		con.repaint();
+		con.sleep(20000);
 	}
 	
-	
-	
-	
 }
+
